@@ -42,7 +42,11 @@ module Reel
       end
    
       def status_symbol(status)
-        status.is_a?(Fixnum) ? Http::Response::STATUS_CODES[status].downcase.gsub(/\s|-/, '_').to_sym : status.to_sym
+        if status.is_a?(Fixnum)
+          Http::Response::STATUS_CODES[status].downcase.gsub(/\s|-/, '_').to_sym
+        else
+          status.to_sym
+        end
       end
     end
   end
