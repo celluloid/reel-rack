@@ -30,7 +30,7 @@ module Rack
         rescue Interrupt
           Celluloid.logger.info "Interrupt received... shutting down"
           supervisor.terminate
-          Celluloid.join(supervisor)
+          Celluloid::Actor.join(supervisor)
           Celluloid.logger.info "That's all, folks!"
         end
       end
