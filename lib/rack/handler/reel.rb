@@ -20,7 +20,7 @@ module Rack
           ENV['RACK_ENV'] = options[:environment].to_s
         end
 
-        Celluloid.logger.info  "A Reel good HTTP server! (Codename #{Reel::CODENAME})"
+        Celluloid.logger.info  "A Reel good HTTP server! (Codename \"#{::Reel::CODENAME}\")"
         Celluloid.logger.info "Listening on #{options[:host]}:#{options[:port]}"
 
         supervisor = ::Reel::Rack::Server.supervise_as(:reel_rack_server, app, options)

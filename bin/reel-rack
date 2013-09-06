@@ -1,0 +1,5 @@
+#!/usr/bin/env ruby
+
+require 'reel/rack/cli'
+
+Reel::Rack::CLI.new(ARGV).run

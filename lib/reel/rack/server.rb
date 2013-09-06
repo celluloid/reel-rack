@@ -34,7 +34,16 @@ module Reel
         }.merge(convert_headers(request.headers))
    
         status, headers, body = app.call ::Rack::MockRequest.env_for(request.url, options)
-        request.respond status_symbol(status), headers, body
+
+        if body.respond_to? :each
+          request.respond status_symbol(status), headers.merge(:transfer_encoding => :chunked)
+          body.each { |chunk| request << chunk }
+          request.finish_response
+        else
+          request.respond status_symbol(status), headers, body
+        end
+
+        body.close if body.respond_to? :close
       end
    
       def convert_headers(headers)
