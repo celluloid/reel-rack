@@ -1,6 +1,10 @@
 Reel::Rack
 ==========
 
+[![Build Status](https://secure.travis-ci.org/celluloid/reel-rack.png?branch=master)](http://travis-ci.org/celluloid/reel)
+[![Code Climate](https://codeclimate.com/github/celluloid/reel-rack.png)](https://codeclimate.com/github/celluloid/reel)
+[![Coverage Status](https://coveralls.io/repos/celluloid/reel-rack/badge.png?branch=master)](https://coveralls.io/r/celluloid/reel)
+
 A Rack adapter for [Reel][reel], the [Celluloid::IO][celluloidio] web server.
 
 [reel]: https://github.com/celluloid/reel
