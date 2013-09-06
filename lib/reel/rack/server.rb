@@ -35,12 +35,15 @@ module Reel
    
         status, headers, body = app.call ::Rack::MockRequest.env_for(request.url, options)
 
-        if body.respond_to? :each
+        if body.respond_to?(:to_str)
+          request.respond status_symbol(status), headers, body.to_str
+        elsif body.respond_to?(:each)
           request.respond status_symbol(status), headers.merge(:transfer_encoding => :chunked)
           body.each { |chunk| request << chunk }
           request.finish_response
         else
-          request.respond status_symbol(status), headers, body
+          Logger.error("don't know how to render: #{body.inspect}")
+          request.respond :internal_server_error, "An error occurred processing your request"
         end
 
         body.close if body.respond_to? :close
