@@ -19,7 +19,7 @@ Gem::Specification.new do |spec|
   spec.require_paths = ["lib"]
 
   spec.add_runtime_dependency "reel", ">= 0.4.0.pre2"
-  spec.add_runtime_dependency "rack", "1.5.2"
+  spec.add_runtime_dependency "rack", ">= 1.4.0"
 
   spec.add_development_dependency "bundler", "~> 1.3"
   spec.add_development_dependency "rake"
