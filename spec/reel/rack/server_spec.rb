@@ -1,4 +1,5 @@
-require 'reel/rack/server'
+
+require 'spec_helper'
 require 'net/http'
 
 describe Reel::Rack::Server do
