@@ -1,3 +1,3 @@
-0.0.0
------
-* Initial proof-of-concept
+0.0.1 (2013-09-10)
+------------------
+* Initial release

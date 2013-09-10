@@ -14,11 +14,11 @@ A Rack adapter for [Reel][reel], the [Celluloid::IO][celluloidio] web server.
 
 reel-rack can be installed with RubyGems:
 
-    gem install reel-rack --pre
+    gem install reel-rack
 
 Bundle it with your application by adding this to your Gemfile:
 
-    gem 'reel-rack', '0.0.1.pre2'
+    gem 'reel-rack'
 
 ## Usage
 
