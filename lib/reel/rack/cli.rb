@@ -45,6 +45,8 @@ module Reel
         app, options = ::Rack::Builder.parse_file(@options[:rackup])
         options.merge!(@options)
         ::Rack::Handler::Reel.run(app, options)
+
+        Celluloid.logger.info "That's all, folks!"
       end
     end
   end
