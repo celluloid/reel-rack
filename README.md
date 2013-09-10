@@ -1,6 +1,6 @@
 Reel::Rack
 ==========
-
+[![Gem Version](https://badge.fury.io/rb/reel-rack.png)](http://rubygems.org/gems/reel-rack)
 [![Build Status](https://secure.travis-ci.org/celluloid/reel-rack.png?branch=master)](http://travis-ci.org/celluloid/reel-rack)
 [![Code Climate](https://codeclimate.com/github/celluloid/reel-rack.png)](https://codeclimate.com/github/celluloid/reel-rack)
 [![Coverage Status](https://coveralls.io/repos/celluloid/reel-rack/badge.png?branch=master)](https://coveralls.io/r/celluloid/reel-rack)
