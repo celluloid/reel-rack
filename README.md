@@ -22,12 +22,14 @@ Bundle it with your application by adding this to your Gemfile:
 
 ## Documentation
 
-Please see the [Reel::Rack Wiki][wiki] for detailed documentation.
+Please see the [Reel::Rack Wiki][wiki] for detailed documentation, including
+how to use Reel::Rack with the [Ruby on Rails][rails] web framework.
 
 More information about Reel itself can be found on the [Reel Project Page][reel]
 
-[wiki]: https://github.com/celluloid/reel-rack/wiki
-[reel]: https://github.com/celluloid/reel
+[wiki]:  https://github.com/celluloid/reel-rack/wiki
+[rails]: http://rubyonrails.org/
+[reel]:  https://github.com/celluloid/reel
 
 ## Usage
 
