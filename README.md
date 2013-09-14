@@ -20,6 +20,15 @@ Bundle it with your application by adding this to your Gemfile:
 
     gem 'reel-rack'
 
+## Documentation
+
+Please see the [Reel::Rack Wiki][wiki] for detailed documentation.
+
+More information about Reel itself can be found on the [Reel Project Page][reel]
+
+[wiki]: https://github.com/celluloid/reel-rack/wiki
+[reel]: https://github.com/celluloid/reel
+
 ## Usage
 
 You should be able to launch any Rack-compatible under Reel with:
