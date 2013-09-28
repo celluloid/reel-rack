@@ -1,4 +1,3 @@
-
 # Adapted from code orinially Copyright (c) 2013 Jonathan Stott
 
 require 'reel'
@@ -12,13 +11,13 @@ module Reel
       attr_reader :app
 
       def initialize(app, options)
-        raise ArgumentError, "no host given" unless options[:host]
-        raise ArgumentError, "no port given" unless options[:port]
+        raise ArgumentError, "no host given" unless options[:Host]
+        raise ArgumentError, "no port given" unless options[:Port]
 
         info  "A Reel good HTTP server! (Codename \"#{::Reel::CODENAME}\")"
-        info "Listening on http://#{options[:host]}:#{options[:port]}"
+        info "Listening on http://#{options[:Host]}:#{options[:Port]}"
 
-        super(options[:host], options[:port], &method(:on_connection))
+        super(options[:Host], options[:Port], &method(:on_connection))
         @app = app
       end
    

@@ -4,8 +4,8 @@ module Rack
   module Handler
     class Reel
       DEFAULT_OPTIONS = {
-        :host    => "0.0.0.0",
-        :port    => 3000,
+        :Host    => "0.0.0.0",
+        :Port    => 3000,
         :quiet   => false
       }
 
