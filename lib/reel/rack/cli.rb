@@ -8,7 +8,7 @@ module Reel
         @argv   = argv
         @options = {
           addr:   "localhost",
-          port:   3000,
+          Port:   3000,
           quiet:  false,
           rackup: "config.ru"
         }
@@ -23,8 +23,8 @@ module Reel
             @options[:addr] = addr
           end
 
-          o.on "-p", "--port PORT", "Port to bind to (default #{@options[:port]})" do |port|
-            @options[:port] = port
+          o.on "-p", "--port PORT", "Port to bind to (default #{@options[:Port]})" do |port|
+            @options[:Port] = port
           end
 
           o.on "-q", "--quiet", "Suppress normal logging output" do

@@ -1,4 +1,3 @@
-
 require 'spec_helper'
 require 'net/http'
 
@@ -9,7 +8,7 @@ describe Reel::Rack::Server do
 
   subject do
     app = proc { [200, {"Content-Type" => "text/plain"}, body] }
-    described_class.new(app, :host => host, :port => port)
+    described_class.new(app, :Host => host, :Port => port)
   end
 
   it "runs a basic Hello World app" do
