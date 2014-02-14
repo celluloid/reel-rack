@@ -1,5 +1,6 @@
 require 'spec_helper'
 require 'net/http'
+require 'rack/lint'
 
 describe Reel::Rack::Server do
   let(:host) { "127.0.0.1" }
@@ -7,8 +8,8 @@ describe Reel::Rack::Server do
   let(:body) { "hello world" }
 
   subject do
-    app = proc { [200, {"Content-Type" => "text/plain"}, body] }
-    described_class.new(app, :Host => host, :Port => port)
+    app = proc { [200, {"Content-Type" => "text/plain"}, [body]] }
+    described_class.new(Rack::Lint.new(app), :Host => host, :Port => port)
   end
 
   it "runs a basic Hello World app" do
