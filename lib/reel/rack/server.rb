@@ -5,7 +5,7 @@ require 'rack'
 
 module Reel
   module Rack
-    class Server < Server
+    class Server < Reel::Server::HTTP
       include Celluloid::Logger
 
       attr_reader :app
