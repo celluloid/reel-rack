@@ -54,11 +54,18 @@ module Reel
         body.close if body.respond_to? :close
       end
 
+      # Those headers must not start with 'HTTP_'.
+      NO_PREFIX_HEADERS=%w[CONTENT_TYPE CONTENT_LENGTH].freeze
+
       def convert_headers(headers)
         Hash[headers.map { |key, value|
-          header = 'HTTP_' + key.upcase.gsub('-','_')
-          # Those headers must not start with HTTP_.
-          [(['HTTP_CONTENT_TYPE', 'HTTP_CONTENT_LENGTH'].include?(header) ? header.sub(/^HTTP_/, '') : header),value ]
+          header = key.upcase.gsub('-','_')
+
+          if NO_PREFIX_HEADERS.member?(header)
+            [header, value]
+          else
+            ['HTTP_' + header, value]
+          end
         }]
       end
 
