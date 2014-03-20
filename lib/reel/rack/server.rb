@@ -53,11 +53,22 @@ module Reel
 
         body.close if body.respond_to? :close
       end
-   
+
+      # Those headers must not start with 'HTTP_'.
+      NO_PREFIX_HEADERS=%w[CONTENT_TYPE CONTENT_LENGTH].freeze
+
       def convert_headers(headers)
-        Hash[headers.map { |key, value| ['HTTP_' + key.upcase.gsub('-','_'),value ] }]
+        Hash[headers.map { |key, value|
+          header = key.upcase.gsub('-','_')
+
+          if NO_PREFIX_HEADERS.member?(header)
+            [header, value]
+          else
+            ['HTTP_' + header, value]
+          end
+        }]
       end
-   
+
       def status_symbol(status)
         if status.is_a?(Fixnum)
           Http::Response::STATUS_CODES[status].downcase.gsub(/\s|-/, '_').to_sym
