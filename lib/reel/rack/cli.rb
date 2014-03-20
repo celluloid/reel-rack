@@ -7,8 +7,8 @@ module Reel
       def initialize(argv)
         @argv   = argv
         @options = {
-          addr:   "localhost",
-          Port:   3000,
+          host:   "localhost",
+          port:   3000,
           quiet:  false,
           rackup: "config.ru"
         }
@@ -19,12 +19,12 @@ module Reel
         @parser ||= OptionParser.new do |o|
           o.banner = "reel-rack <options> <rackup file>"
 
-          o.on "-a", "--addr ADDR", "Address to listen on (default #{@options[:addr]})" do |addr|
-            @options[:addr] = addr
+          o.on "-a", "--addr ADDR", "Address to listen on (default #{@options[:host]})" do |host|
+            @options[:host] = host
           end
 
-          o.on "-p", "--port PORT", "Port to bind to (default #{@options[:Port]})" do |port|
-            @options[:Port] = port
+          o.on "-p", "--port PORT", "Port to bind to (default #{@options[:port]})" do |port|
+            @options[:port] = port
           end
 
           o.on "-q", "--quiet", "Suppress normal logging output" do
