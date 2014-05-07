@@ -37,8 +37,12 @@ module Reel
           :input        => request.body.to_s,
           "REMOTE_ADDR" => request.remote_addr
         }.merge(convert_headers(request.headers))
-   
-        status, headers, body = app.call ::Rack::MockRequest.env_for(request.url, options)
+
+        # Construct full url so that rack can generate a correct environment.
+        # see https://github.com/rack/rack/blob/master/lib/rack/mock.rb.
+        url = "http://#{request.headers['Host']}#{request.url}"
+
+        status, headers, body = app.call ::Rack::MockRequest.env_for(url, options)
 
         if body.respond_to?(:to_str)
           request.respond status_symbol(status), headers, body.to_str
