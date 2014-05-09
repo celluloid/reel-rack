@@ -31,6 +31,9 @@ module Reel
         end
       end
    
+      # Compile the regex once
+      CONTENT_LENGTH_HEADER = %r{^content-length$}i
+
       def route_request(request)
         options = {
           :method       => request.method,
@@ -40,12 +43,18 @@ module Reel
    
         status, headers, body = app.call ::Rack::MockRequest.env_for(request.url, options)
 
-        if body.respond_to?(:to_str)
-          request.respond status_symbol(status), headers, body.to_str
-        elsif body.respond_to?(:each)
-          request.respond status_symbol(status), headers.merge(:transfer_encoding => :chunked)
-          body.each { |chunk| request << chunk }
-          request.finish_response
+        if body.respond_to? :each
+          # If Content-Length was specified we can send the response all at once
+          if headers.keys.detect { |h| h =~ CONTENT_LENGTH_HEADER }
+            # Can't use collect here because Rack::BodyProxy/Rack::Lint isn't a real Enumerable
+            full_body = ''
+            body.each { |b| full_body << b }
+            request.respond status_symbol(status), headers, full_body
+          else
+            request.respond status_symbol(status), headers.merge(:transfer_encoding => :chunked)
+            body.each { |chunk| request << chunk }
+            request.finish_response
+          end
         else
           Logger.error("don't know how to render: #{body.inspect}")
           request.respond :internal_server_error, "An error occurred processing your request"
