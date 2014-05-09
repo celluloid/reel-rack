@@ -38,6 +38,19 @@ describe Reel::Rack::Server do
     expect(http.send_request('PUT', uri.path, "test").body).to eq body
     expect(http.send_request('PATCH', uri.path, "test").body).to eq body
     expect(http.send_request('DELETE', uri.path).body).to eq body
+  end
 
+  it "disables chunked transfer if a Content-Length header is set" do
+    expect(http.send_request('GET', uri.path, 'test')['content-length']).to_not eq nil
+    expect(http.send_request('GET', uri.path, 'test')['transfer-encoding']).to_not eq 'chunked'
+  end
+
+  context "with no Content-Length header and the body is Enumerable" do
+    let(:headers) { {"Content-Type" => "text/plain"} }
+
+    it "sends a chunked transfer response if there is no Content-Length header and the body is Enumerable" do
+      expect(http.send_request('GET', uri.path, 'test')['content-length']).to eq nil
+      expect(http.send_request('GET', uri.path, 'test')['transfer-encoding']).to eq 'chunked'
+    end
   end
 end
