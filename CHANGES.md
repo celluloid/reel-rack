@@ -1,3 +1,7 @@
+0.2.1 (2014-12-17)
+------------------
+* Bugfixes for responding with chunked encoding
+
 0.2.0 (2014-04-15)
 ------------------
 * Updated to be API compatible with Reel 0.5.0
