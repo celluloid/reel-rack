@@ -10,10 +10,10 @@ describe Reel::Rack::Server do
   let(:body) { "hello world" }
   let(:uri) { URI("http://#{host}:#{port}/") }
   let(:http) { Net::HTTP.new(uri.host, uri.port) }
+  let(:rack_app) { proc { [200, headers, [body]] } }
 
   subject do
-    app = proc { [200, headers, [body]] }
-    described_class.new(Rack::Lint.new(Rack::Head.new(app)), :Host => host, :Port => port)
+    described_class.new(Rack::Lint.new(Rack::Head.new(rack_app)), :Host => host, :Port => port)
   end
 
   before do
@@ -51,6 +51,22 @@ describe Reel::Rack::Server do
     it "sends a chunked transfer response if there is no Content-Length header and the body is Enumerable" do
       expect(http.send_request('GET', uri.path, 'test')['content-length']).to eq nil
       expect(http.send_request('GET', uri.path, 'test')['transfer-encoding']).to eq 'chunked'
+    end
+  end
+
+  context "works with Rack::Builder" do
+    let(:rack_app) {
+      headers = {"Content-Type" => "text/plain"}
+      Rack::Builder.app {
+        map("/path1") { run proc { [200, headers.merge("Content-Length"=>"5"), ["path1"]] } }
+        run proc { [200, headers.merge("Content-Length"=>"3"), ["any"]] }
+      }
+    }
+
+    it "routes the requests both exact path and any path" do
+      expect(http.send_request('GET', "/path1", 'test').body).to eq "path1"
+      expect(http.send_request('GET', "/", 'test').body).to eq "any"
+      expect(http.send_request('GET', "/path2", 'test').body).to eq "any"
     end
   end
 end

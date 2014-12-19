@@ -40,7 +40,9 @@ module Reel
           :input        => request.body.to_s,
           "REMOTE_ADDR" => request.remote_addr
         }.merge(convert_headers(request.headers))
-   
+
+        normalize_env(options)
+
         status, headers, body = app.call ::Rack::MockRequest.env_for(request.url, options)
 
         if body.respond_to? :each
@@ -76,6 +78,26 @@ module Reel
             ['HTTP_' + header, value]
           end
         }]
+      end
+
+      # Copied from lib/puma/server.rb
+      def normalize_env(env)
+        if host = env["HTTP_HOST"]
+          if colon = host.index(":")
+            env["SERVER_NAME"] = host[0, colon]
+            env["SERVER_PORT"] = host[colon+1, host.bytesize]
+          else
+            env["SERVER_NAME"] = host
+            env["SERVER_PORT"] = default_server_port(env)
+          end
+        else
+          env["SERVER_NAME"] = "localhost"
+          env["SERVER_PORT"] = default_server_port(env)
+        end
+      end
+
+      def default_server_port(env)
+        env['HTTP_X_FORWARDED_PROTO'] == 'https' ? 443 : 80
       end
 
       def status_symbol(status)
