@@ -1,3 +1,7 @@
+0.2.2 (2015-03-27)
+------------------
+* Add SERVER_NAME and SERVER_PORT key to rack env
+
 0.2.1 (2014-12-17)
 ------------------
 * Bugfixes for responding with chunked encoding
