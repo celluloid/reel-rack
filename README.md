@@ -1,9 +1,9 @@
-![Reel::Rack](https://github.com/celluloid/reel-rack/raw/master/logo.png)
+![Reel::Rack](https://github.com/celluloid/reel-rack/raw/master/logo.svg)
 ==========
-[![Gem Version](https://badge.fury.io/rb/reel-rack.png)](http://rubygems.org/gems/reel-rack)
-[![Build Status](https://secure.travis-ci.org/celluloid/reel-rack.png?branch=master)](http://travis-ci.org/celluloid/reel-rack)
-[![Code Climate](https://codeclimate.com/github/celluloid/reel-rack.png)](https://codeclimate.com/github/celluloid/reel-rack)
-[![Coverage Status](https://coveralls.io/repos/celluloid/reel-rack/badge.png?branch=master)](https://coveralls.io/r/celluloid/reel-rack)
+[![Gem Version](https://badge.fury.io/rb/reel-rack.svg)](http://rubygems.org/gems/reel-rack)
+[![Build Status](https://secure.travis-ci.org/celluloid/reel-rack.svg?branch=master)](http://travis-ci.org/celluloid/reel-rack)
+[![Code Climate](https://codeclimate.com/github/celluloid/reel-rack.svg)](https://codeclimate.com/github/celluloid/reel-rack)
+[![Coverage Status](https://coveralls.io/repos/celluloid/reel-rack/badge.svg?branch=master)](https://coveralls.io/r/celluloid/reel-rack)
 
 A Rack adapter for [Reel][reel], the [Celluloid::IO][celluloidio] web server.
 
