@@ -1,3 +1,7 @@
+0.2.3 (2016-05-07)
+------------------
+* Use Reel::Response::STATUS_CODES
+
 0.2.2 (2015-03-27)
 ------------------
 * Add SERVER_NAME and SERVER_PORT key to rack env
