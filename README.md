@@ -1,4 +1,4 @@
-![Reel::Rack](https://github.com/celluloid/reel-rack/raw/master/logo.svg)
+![Reel::Rack](https://github.com/celluloid/reel-rack/raw/master/logo.png)
 ==========
 [![Gem Version](https://badge.fury.io/rb/reel-rack.svg)](http://rubygems.org/gems/reel-rack)
 [![Build Status](https://secure.travis-ci.org/celluloid/reel-rack.svg?branch=master)](http://travis-ci.org/celluloid/reel-rack)
