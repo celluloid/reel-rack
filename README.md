@@ -58,5 +58,5 @@ For additional help, run:
 
 ## License
 
-Copyright (c) 2013 Tony Arcieri, Jonathan Stott.
+Copyright (c) 2013-2016 Tony Arcieri, Jonathan Stott.
 Distributed under the MIT License. See LICENSE.txt for further details.
