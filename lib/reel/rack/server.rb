@@ -5,19 +5,19 @@ require 'rack'
 
 module Reel
   module Rack
-    class Server < Reel::Server::HTTP
+    class Server < Reel::Server
       include Celluloid::Logger
 
       attr_reader :app
 
       def initialize(app, options)
-        raise ArgumentError, "no host given" unless options[:Host]
-        raise ArgumentError, "no port given" unless options[:Port]
+        raise ArgumentError, "no host given" unless options[:host]
+        raise ArgumentError, "no port given" unless options[:port]
 
         info  "A Reel good HTTP server! (Codename \"#{::Reel::CODENAME}\")"
-        info "Listening on http://#{options[:Host]}:#{options[:Port]}"
+        info "Listening on http://#{options[:host]}:#{options[:port]}"
 
-        super(options[:Host], options[:Port], &method(:on_connection))
+        super(options[:host], options[:port], &method(:on_connection))
         @app = app
       end
    
