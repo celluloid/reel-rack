@@ -1,3 +1,4 @@
+require 'celluloid/current'
 require 'reel/rack/server'
 
 module Rack
@@ -15,7 +16,7 @@ module Rack
         app = Rack::CommonLogger.new(app, STDOUT) unless options[:quiet]
         ENV['RACK_ENV'] = options[:environment].to_s if options[:environment]
 
-        supervisor = ::Reel::Rack::Server.supervise_as(:reel_rack_server, app, options)
+        supervisor = ::Reel::Rack::Server.supervise(as: :reel_rack_server, args: [app, options])
 
         begin
           sleep
