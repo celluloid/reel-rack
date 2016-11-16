@@ -6,7 +6,7 @@ require 'rack'
 module Reel
   module Rack
     class Server < Reel::Server::HTTP
-      include Celluloid::Logger
+      include Celluloid::Internals::Logger
 
       attr_reader :app
 
@@ -20,7 +20,7 @@ module Reel
         super(options[:Host], options[:Port], &method(:on_connection))
         @app = app
       end
-   
+
       def on_connection(connection)
         connection.each_request do |request|
           if request.websocket?
@@ -30,7 +30,7 @@ module Reel
           end
         end
       end
-   
+
       # Compile the regex once
       CONTENT_LENGTH_HEADER = %r{^content-length$}i
 
