@@ -1,9 +1,9 @@
 ![Reel::Rack](https://github.com/celluloid/reel-rack/raw/master/logo.png)
 ==========
 [![Gem Version](https://badge.fury.io/rb/reel-rack.svg)](http://rubygems.org/gems/reel-rack)
+ [![MIT licensed](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/celluloid/reel-rack/blob/master/LICENSE.txt)
 [![Build Status](https://secure.travis-ci.org/celluloid/reel-rack.svg?branch=master)](http://travis-ci.org/celluloid/reel-rack)
-[![Code Climate](https://codeclimate.com/github/celluloid/reel-rack.svg)](https://codeclimate.com/github/celluloid/reel-rack)
-[![Coverage Status](https://coveralls.io/repos/celluloid/reel-rack/badge.svg?branch=master)](https://coveralls.io/r/celluloid/reel-rack)
+[![Maintained: no](https://img.shields.io/maintenance/no/2016.svg)](https://github.com/celluloid/celluloid/issues/779)
 
 A Rack adapter for [Reel][reel], the [Celluloid::IO][celluloidio] web server.
 
