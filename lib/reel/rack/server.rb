@@ -23,27 +23,25 @@ module Reel
 
       def on_connection(connection)
         connection.each_request do |request|
-          if request.websocket?
-            request.respond :bad_request, "WebSockets not supported"
-          else
-            route_request request
-          end
+          route_request request, connection
         end
       end
 
       # Compile the regex once
       CONTENT_LENGTH_HEADER = %r{^content-length$}i
 
-      def route_request(request)
+      def route_request(request, connection)
         options = {
-          :method       => request.method,
-          :input        => request.body.to_s,
-          "REMOTE_ADDR" => request.remote_addr
+          :method        => request.method,
+          :input         => request.body.to_s,
+          "REMOTE_ADDR"  => request.remote_addr,
+          "reel.request" => request
         }.merge(convert_headers(request.headers))
 
         normalize_env(options)
 
         status, headers, body = app.call ::Rack::MockRequest.env_for(request.url, options)
+        return if connection.response_state == :hijacked
 
         if body.respond_to? :each
           # If Content-Length was specified we can send the response all at once
