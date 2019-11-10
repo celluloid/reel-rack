@@ -7,6 +7,7 @@ module Rack
       DEFAULT_OPTIONS = {
         :Host    => "0.0.0.0",
         :Port    => 3000,
+        :Async   => false,
         :quiet   => false
       }
 
@@ -24,6 +25,12 @@ module Rack
           Celluloid.logger.info "Interrupt received... shutting down"
           supervisor.terminate
         end
+      end
+
+      def self.valid_options
+        {
+          'Async' => 'handle each request in a separate actor (default: false)'
+        }
       end
     end
 
